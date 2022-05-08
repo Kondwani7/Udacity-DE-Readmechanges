@@ -30,19 +30,19 @@ event_data/2018-11-09-events.csv
 Representing data from user log events on  10th an 11th  Novmember 2018 (2 days)
 ## AdditionalSteps
 ### query 1
-session Id was chosen as the primary key while the itemInSession was the composite key to optimize our data's partition across cassandra's nodes and potentially faster queries based on the design of table session_item.
-The primary intererst was queries based on session events related to each artist
-As the data gets larger, say events data over 1 year, partitioning the data in this format may lead to faster queries
+- session Id was chosen as the primary key while the itemInSession was the composite key to optimize our data's partition across cassandra's nodes and potentially faster queries based on the design of table session_item.
+- The primary intererst was queries based on session events related to each artist
+- As the data gets larger, say events data over 1 year, partitioning the data in this format may lead to faster queries
 
 ### query2
-The userid and session Id were chosen as the primary key while the itemInSession was the composite key to optimize our data's partition across cassandra's nodes and potentially faster queries based on the design of table user_session. 
-The primary interest was queries based on the user events in their session. 
-As the data gets larger, say events data over 1 year, partitioning the data in this format may lead to faster queries
+- The userid and session Id were chosen as the primary key while the itemInSession was the composite key to optimize our data's partition across cassandra's nodes and potentially faster queries based on the design of table user_session. 
+- The primary interest was queries based on the user events in their session. 
+- As the data gets larger, say events data over 1 year, partitioning the data in this format may lead to faster queries
 
 ### query3
-The song and userId were chosen as the primary key while the itemInSession was the composite key to optimize our data's partition across cassandra's nodes and potentially faster queries based on the design  of table song. 
-The primary interest was to optimize queries based on the song table. 
-As the data gets larger, say events data over 1 year, partitioning the data in this format may lead to faster queries
+- The song and userId were chosen as the primary key while the itemInSession was the composite key to optimize our data's partition across cassandra's nodes and potentially faster queries based on the design  of table song. 
+- The primary interest was to optimize queries based on the song table. 
+- As the data gets larger, say events data over 1 year, partitioning the data in this format may lead to faster queries
 
 - note that certain queries such as 
 ```bash
