@@ -1,11 +1,11 @@
-# Cloud Data Warehouse
+# Data Pipelines: Airflow
 ## Project introduction
 
-A music streaming startup, Sparkify, has grown their user base and song database and want to move their processes and data onto the cloud. Their data resides in S3, in a directory of JSON logs on user activity on the app, as well as a directory with JSON metadata on the songs in their app.
+A music streaming company, Sparkify, has decided that it is time to introduce more automation and monitoring to their data warehouse ETL pipelines and come to the conclusion that the best tool to achieve this is Apache Airflow.
 
 ## Table of contents:
 
-- [Objective](#objective)
+- [Objective](#objectives)
 - [Dimension and fact Table](#starschema)
 - [The primary scripts of the project](#scripts)
 - [steps needed to run project](#runproject)
@@ -13,8 +13,10 @@ A music streaming startup, Sparkify, has grown their user base and song database
 - [Additional Steps that can be taken](#additionalsteps)
 
 
-## Objective
-Build an ETL pipeline that extracts their data from S3, stages them in Redshift, and transforms data into a set of dimensional tables for their analytics team to continue finding insights into what songs their users are listening to
+## Objectives
+- create high grade data pipelines that are dynamic and built from reusable tasks, can be monitored, and allow easy backfills.
+- Add data quality  to catch any discrepancies in the datasets.
+- Process the source data in S3 to  Amazon Redshift. 
 
 ## StarSchema
 - songplays: fact table - (songplay_id, start_time, user_id, level, song_id, artist_id, session_id, location, user_agent)
@@ -27,20 +29,24 @@ Build an ETL pipeline that extracts their data from S3, stages them in Redshift,
 the main scripts in this project are
 - sql_queries.py: It contains the SQL statements needed to create and insert the data into the tables that form our star schema
 - create_tables.py: It's the script that creates our tables and drops them after use to reset the database's tables
-- etl.py : It's the script that extracts all the data in S3 staging buckets into redshift as SQL tables for our star schema
+- etl.py : It's the script that extracts all the data in json format and converts them in a dataframe that can be inserted into the tables in our star schema
+- test.ipynb: to run analytic queries and assert if data was added into the tables in our star schema
+- etl.ipynb: primarily used to interact with the subset of the data in the pipeline and experiment with some additional queries
 
 ### RunProject
-First run create_tables.py script found in the file directory
-```bash
-python create_tables.py
-```
-Go to AWS (create an account first if you don't have an account), launch a Redshift cluster, configure your security and VPC routing settings to allow access to that cluster. 
 
-Finally, run the etl.py file in the project to finish the pipeline
-```bash
-python etl.py
-```
+[airflow](): contains the dags and operators needed to run our etl pipeline
+
+[dags](): within our airflow folder, it contains the dag needed to orchestrate the pipeline
+
+[operators](): within the plugins, it contains the custom operators built to save time writitng scripts to run our dag
+
+## TargetPipeline
+
+![Interface](https://web.blockbench.net/content/front_page_app.png)
+
 ## DatasetSource
+The source datasets consist of JSON logs that tell about user activity in the application and JSON metadata about the songs the users listen to.
 ### Song dataset
 The first dataset is a subset of real data from the [Million Song Dataset](http://millionsongdataset.com/). Each file is in JSON format and contains metadata about a song and the artist of that song. The files are partitioned by the first three letters of each song's track ID. For example, here are filepaths to two files in this dataset.
 ###Log dataset
@@ -51,11 +57,4 @@ The data is  sourced from S3 buckets on aws
 - Log data: s3://udacity-dend/log_data
 
 ## AdditionalSteps
-- One could run some analyitcal queries
-- Roll up, drill down, Slice and Dice
-- table joins to get key insights and summed up summaries about the data
-- such as tracking a user's favorite artist summing up the with their longest listening time (duration) for an artist's song for a particular month, quarter or year
-- Our for the artist, tracking the demographics of their listeners (users) such as gender
-- This is the same [technqiue](https://artists.spotify.com/en/blog/how-to-read-your-spotify-for-artists-data) spotify implements to allow users & artists to track their data.
-
-
+One could adjust the scheduling times based on the internal deadline or a a third party provider's Service Level Agreement (SLA)   
