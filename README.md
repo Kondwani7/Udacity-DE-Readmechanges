@@ -1,40 +1,41 @@
-# Data Engineering: Capstone Project
-## Project introduction
-We want to build a ETL pipeline that takes data from kaggle that was uploaded to AWS S3 bucket, transforms them into Fact and dimension tables, then uploads them  back as staging tables into a different s3 bucket. This data may be used by the team to predict how reviews after a product seller's store performance.
+# Udacity Data Engineer Nanodegree
+![Interface](https://hackr.io/blog/what-is-data-engineering/thumbnail/large)
 
 ## Table of contents:
+- [Data modelling with Postgres](#datamodelingpostgres)
+- [Data modelling with cassandra](#datamodelingcassandra)
+- [The primary scripts of the project](#clouddatawarehouse)
+- [Data Lake](#datalake)
+- [Data pipelines with Airflow](datapipelines)
+- [Capstone Project](#capstoneproject)
 
-- [Objective](#objectives)
-- [Dimension and fact Table](#starschema)
-- [The primary scripts of the project](#scripts)
-- [Datasets](#datasets)
-- [Additional Steps that can be taken](#additionalsteps)
+### Summary
+A startup called Sparkify wants to analyze the data they've been collecting on songs and user activity on their new music streaming app. The analytics team is particularly interested in understanding what songs users are listening to. Currently, they don't have an easy way to query their data, which resides in a directory of JSON logs on user activity on the app, as well as a directory with JSON metadata on the songs in their app.
 
+## DataModelingPostgres
+### objective
+Build an ETL pipeline that extracts their data and inserts them into postgres tables. [Project Link](https://github.com/Kondwani7/Udacity-DataEngineering-Projects/tree/main/1A_data_modeling_postgres)
 
-## Objectives
-- Transform Amazon bestsellers and reviews data to predict how reviews determine a sellers store performance
+## DataModelingCassandra
+### Objective
+Build an ETL pipeline that extracts their data and inserts them into apache cassandra table. [Project Link](https://github.com/Kondwani7/Udacity-DataEngineering-Projects/tree/main/1b_data_modeling_cassandra)
 
-## StarSchema
-![Interface](https://github.com/Kondwani7/Udacity-DataEngineering-Projects/blob/main/5_capstone_project/star_schema.png)
+## CloudDataWarehouse
+### Objective
+Build an ETL pipeline that extracts their data from S3, stages them in Redshift, and transforms data into a set of dimensional tables for their analytics team to continue finding insights into what songs their users are listening to. [Project Link](https://github.com/Kondwani7/Udacity-DataEngineering-Projects/tree/main/2_cloud_data_warehouse)
 
-### Scripts
-the main scripts in this project are
-- udacity_capstone: It contains the scripts used to create the entire ETL pipeline
-- config_write: contains the script used to set your AWS credentials 
-- AWS_local_creds : It contains your access and key secret key provided for your IAM user. when creating the IAM user on AWS, attach the "AmazonS3FullAcess" policy to have complete control over reading and writing to S3 buckets. 
+## DataLake
+### Objective
+build an ETL pipeline that extracts their data from S3, processes them using Spark (AWS Elastic Map Reduce(EMR)), and loads the data back into S3 as a set of dimensional tables. [Project Link](https://github.com/Kondwani7/Udacity-DataEngineering-Projects/tree/main/2_cloud_data_warehouse)
 
+## DataPipelines
+### Objectives
+- create high grade data pipelines that are dynamic and built from reusable tasks, can be monitored, and allow easy backfills.
+- Add data quality  to catch any discrepancies in the datasets.
+- Process the source data in S3 to  Amazon Redshift. 
+- [Project Link](https://github.com/Kondwani7/Udacity-DataEngineering-Projects/tree/main/4_data_pipelines)
 
-
-## Datasets
-### Amazon Bestseller data
-The first data set is sourced from [kaggle](https://www.kaggle.com/datasets/waqarahmad101/amazon-best-seller-product-data) It contains data on the best sellers' store performance.and is webscrapped from the amazon website. it has over 6.7 million rows.
-
-### Aamzon Product Reviews
-Th second dataset is also sourced from [kaggle](https://www.kaggle.com/datasets/waqarahmad101/amazon-best-seller-product-data). It contains product reviews on various Amazon products. It has 568k rows.
-
-
-## AdditionalSteps
-- In a real world setting, the data would have been sourced from Amazon's APIs
-- As the data scales, A data lake such as Amazon's EMR would have been used
-- Airflow would have been leveraged to visualize and automate running the entire ETL process
-- A time scheduler would be set to handle the batch processing daily 
+## CapstoneProject
+### Project introduction
+### Objective
+Transform Amazon bestsellers and reviews data to predict how reviews determine a sellers store performance. [Project Link](https://github.com/Kondwani7/Udacity-DataEngineering-Projects/tree/main/5_capstone_project)
