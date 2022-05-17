@@ -1,5 +1,5 @@
 # Udacity Data Engineer Nanodegree
-![Interface](https://hackr.io/blog/what-is-data-engineering/thumbnail/large)
+![Interface](https://napaanalytics.com/wp-content/uploads/2020/04/Napa-Data-Engineering-Image.jpg)
 
 ## Table of contents:
 - [Data modelling with Postgres](#datamodelingpostgres)
